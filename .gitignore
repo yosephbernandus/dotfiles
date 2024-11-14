@@ -1,0 +1,16 @@
+.idea/
+
+.directory/
+
+# macOS folder attributes. 
+.DS_Store
+
+# Vim swap file.
+.swp
+tags
+test.sh
+.luarc.json
+
+spell/
+lazy-lock.json
+
