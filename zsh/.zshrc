@@ -166,4 +166,4 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
 fi
 
 export TERM=xterm-256color
-
+bindkey '^ ' autosuggest-accept
