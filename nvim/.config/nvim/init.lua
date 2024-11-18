@@ -1329,86 +1329,86 @@ require('lazy').setup({
   },
 
   -- tab bar
-  {
-    'romgrk/barbar.nvim',
-    dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-    },
-    init = function()
-      vim.g.barbar_auto_setup = false
-    end,
-    opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      -- animation = true,
-      -- insert_at_start = true,
-      -- …etc.
-      tabpages = true,
-      sidebar_filetypes = {
-        -- Use the default values: {event = 'BufWinLeave', text = '', align = 'left'}
-        NvimTree = true,
-        -- Or, specify the text used for the offset:
-        undotree = {
-          text = 'undotree',
-          align = 'center', -- *optionally* specify an alignment (either 'left', 'center', or 'right')
-        },
-        -- Or, specify the event which the sidebar executes when leaving:
-        ['neo-tree'] = { event = 'BufWipeout' },
-        -- Or, specify all three
-        Outline = { event = 'BufWinLeave', text = 'symbols-outline', align = 'right' },
-      },
-      separator = { left = '▎', right = '' },
-    },
-    version = '^1.0.0',
-  },
-
-  -- Move to previous/next
-  vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { desc = '' }),
-  vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', { desc = '' }),
-  -- Re-order to previous/next
-  vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move Previous tab buffer' }),
-  vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { desc = 'Move Next tab buffer' }),
-  -- Goto buffer in position...
-  vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { desc = 'Move to tab 1' }),
-  vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { desc = 'Move to tab 2' }),
-  vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { desc = 'Move to tab 3' }),
-  vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', { desc = 'Move to tab 4' }),
-  vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', { desc = 'Move to tab 5' }),
-  vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { desc = 'Move to tab 6' }),
-  vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { desc = 'Move to tab 7' }),
-  vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { desc = 'Move to tab 8' }),
-  vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { desc = 'Move to tab 9' }),
-  vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { desc = 'Move to tab buffer last' }),
-  -- Pin/unpin buffer
-  vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', { desc = 'Pin tab' }),
-  -- Goto pinned/unpinned buffer
-  --                 :BufferGotoPinned
-  --                 :BufferGotoUnpinned
-  -- Close buffer
-  vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', { desc = 'Close Tab' }),
-  vim.keymap.set('n', '<A-cl>', '<Cmd>BufferCloseAllButCurrent<CR>', { desc = 'Close All Buffer keep current' }),
-
-  -- Wipeout buffer
-  --                 :BufferWipeout
-  -- Close commands
-  --                 :BufferCloseAllButCurrent
-  --                 :BufferCloseAllButPinned
-  --                 :BufferCloseAllButCurrentOrPinned
-  --                 :BufferCloseBuffersLeft
-  --                 :BufferCloseBuffersRight
-  -- Magic buffer-picking mode
-  vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', { desc = 'Pick Tab' }),
-  -- Sort automatically by...
-  vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { desc = 'Order by Buffern number' }),
-  vim.keymap.set('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', { desc = 'Oder by buffer name' }),
-  vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', { desc = 'Order by directory buffer' }),
-  vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', { desc = 'Order by language' }),
-  vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { desc = 'Order by window number' }),
-
-  vim.keymap.set('n', '<A-z>', '<Cmd>BufferScrollLeft<CR>', { desc = 'Scroll left' }),
-  vim.keymap.set('n', '<A-m>', '<Cmd>BufferScrollRight<CR>', { desc = 'Scroll rigth' }),
-
-  -- tab bar
+  -- {
+  --   'romgrk/barbar.nvim',
+  --   dependencies = {
+  --     'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+  --     'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+  --   },
+  --   init = function()
+  --     vim.g.barbar_auto_setup = false
+  --   end,
+  --   opts = {
+  --     -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+  --     -- animation = true,
+  --     -- insert_at_start = true,
+  --     -- …etc.
+  --     tabpages = true,
+  --     sidebar_filetypes = {
+  --       -- Use the default values: {event = 'BufWinLeave', text = '', align = 'left'}
+  --       NvimTree = true,
+  --       -- Or, specify the text used for the offset:
+  --       undotree = {
+  --         text = 'undotree',
+  --         align = 'center', -- *optionally* specify an alignment (either 'left', 'center', or 'right')
+  --       },
+  --       -- Or, specify the event which the sidebar executes when leaving:
+  --       ['neo-tree'] = { event = 'BufWipeout' },
+  --       -- Or, specify all three
+  --       Outline = { event = 'BufWinLeave', text = 'symbols-outline', align = 'right' },
+  --     },
+  --     separator = { left = '▎', right = '' },
+  --   },
+  --   version = '^1.0.0',
+  -- },
+  --
+  -- -- Move to previous/next
+  -- vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { desc = '' }),
+  -- vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>', { desc = '' }),
+  -- -- Re-order to previous/next
+  -- vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move Previous tab buffer' }),
+  -- vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { desc = 'Move Next tab buffer' }),
+  -- -- Goto buffer in position...
+  -- vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { desc = 'Move to tab 1' }),
+  -- vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { desc = 'Move to tab 2' }),
+  -- vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { desc = 'Move to tab 3' }),
+  -- vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', { desc = 'Move to tab 4' }),
+  -- vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', { desc = 'Move to tab 5' }),
+  -- vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { desc = 'Move to tab 6' }),
+  -- vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { desc = 'Move to tab 7' }),
+  -- vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { desc = 'Move to tab 8' }),
+  -- vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { desc = 'Move to tab 9' }),
+  -- vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', { desc = 'Move to tab buffer last' }),
+  -- -- Pin/unpin buffer
+  -- vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', { desc = 'Pin tab' }),
+  -- -- Goto pinned/unpinned buffer
+  -- --                 :BufferGotoPinned
+  -- --                 :BufferGotoUnpinned
+  -- -- Close buffer
+  -- vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', { desc = 'Close Tab' }),
+  -- vim.keymap.set('n', '<A-cl>', '<Cmd>BufferCloseAllButCurrent<CR>', { desc = 'Close All Buffer keep current' }),
+  --
+  -- -- Wipeout buffer
+  -- --                 :BufferWipeout
+  -- -- Close commands
+  -- --                 :BufferCloseAllButCurrent
+  -- --                 :BufferCloseAllButPinned
+  -- --                 :BufferCloseAllButCurrentOrPinned
+  -- --                 :BufferCloseBuffersLeft
+  -- --                 :BufferCloseBuffersRight
+  -- -- Magic buffer-picking mode
+  -- vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', { desc = 'Pick Tab' }),
+  -- -- Sort automatically by...
+  -- vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { desc = 'Order by Buffern number' }),
+  -- vim.keymap.set('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', { desc = 'Oder by buffer name' }),
+  -- vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', { desc = 'Order by directory buffer' }),
+  -- vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', { desc = 'Order by language' }),
+  -- vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { desc = 'Order by window number' }),
+  --
+  -- vim.keymap.set('n', '<A-z>', '<Cmd>BufferScrollLeft<CR>', { desc = 'Scroll left' }),
+  -- vim.keymap.set('n', '<A-m>', '<Cmd>BufferScrollRight<CR>', { desc = 'Scroll rigth' }),
+  --
+  -- -- tab bar
   -- lualine
   {
     'nvim-lualine/lualine.nvim',
@@ -1632,6 +1632,27 @@ require('lazy').setup({
     end,
   },
   -- end of lualine
+
+  -- Start Session
+  {
+    'rmagatti/auto-session',
+    config = function()
+      require('auto-session').setup {
+        suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+        session_lens = {
+          buftypes_to_ignore = {},
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+      }
+
+      vim.keymap.set('n', '<Leader>ls', require('auto-session.session-lens').search_session, {
+        noremap = true,
+      })
+    end,
+  },
+  -- End Session
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
