@@ -167,3 +167,8 @@ fi
 
 export TERM=xterm-256color
 bindkey '^ ' autosuggest-accept
+
+alias shh-julo-partnership-api-stg="gcloud compute ssh --zone 'asia-southeast2-b' 'stg-julopartner-api-2b59' --internal-ip --project 'julo-stg-mvp-partnership'"
+alias shh-julo-partnership-async-stg="gcloud compute ssh --zone 'asia-southeast2-b' 'stg-julopartner-async-431z' --internal-ip --project 'julo-stg-mvp-partnership'"
+alias shh-julo-partnership-api-uat="gcloud compute ssh --zone 'asia-southeast2-c' 'uat-julopartner-api-xcsm' --internal-ip --project 'julo-uat-mvp-partnership'"
+alias shh-julo-partnership-async-uat="gcloud compute ssh --zone 'asia-southeast2-a' 'uat-julopartner-async-vlhd' --internal-ip --project 'julo-uat-mvp-partnership'"
