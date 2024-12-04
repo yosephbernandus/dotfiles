@@ -1408,6 +1408,32 @@ require('lazy').setup({
   -- vim.keymap.set('n', '<A-z>', '<Cmd>BufferScrollLeft<CR>', { desc = 'Scroll left' }),
   -- vim.keymap.set('n', '<A-m>', '<Cmd>BufferScrollRight<CR>', { desc = 'Scroll rigth' }),
   --
+
+  -- Codeium AI Completion
+  -- running :Codeium Auth for login the token
+  {
+    'Exafunction/codeium.vim',
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function()
+        return vim.fn['codeium#Accept']()
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-;>', function()
+        return vim.fn['codeium#CycleCompletions'](1)
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-,>', function()
+        return vim.fn['codeium#CycleCompletions'](-1)
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-x>', function()
+        return vim.fn['codeium#Clear']()
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<A-ch>', function()
+        return vim.fn['codeium#Chat']()
+      end, { expr = true, silent = true, desc = 'Chat with AI (Codeium)' })
+    end,
+  },
+  -- End Codeium AI Completion
+
   -- -- tab bar
   -- lualine
   {
@@ -1653,31 +1679,32 @@ require('lazy').setup({
     end,
   },
   -- End Session
-
-  -- Codeium AI Completion
-  -- running :Codeium Auth for login the token
-  {
-    'Exafunction/codeium.vim',
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function()
-        return vim.fn['codeium#Accept']()
-      end, { expr = true, silent = true })
-      vim.keymap.set('i', '<C-;>', function()
-        return vim.fn['codeium#CycleCompletions'](1)
-      end, { expr = true, silent = true })
-      vim.keymap.set('i', '<C-,>', function()
-        return vim.fn['codeium#CycleCompletions'](-1)
-      end, { expr = true, silent = true })
-      vim.keymap.set('i', '<C-x>', function()
-        return vim.fn['codeium#Clear']()
-      end, { expr = true, silent = true })
-    end,
-  },
-  -- End Codeium AI Completion
 }, {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    -- If you are using a Nerd Font: set icons to an empty t
+
+    -- Codeium AI Completion
+    --   -- running :Codeium Auth for login the token
+    --     {
+    --         'Exafunction/codeium.vim',
+    --             config = function()
+    --                   -- Change '<C-g>' here to any keycode you like.
+    --                         vim.keymap.set('i', '<C-g>', function()
+    --                                 return vim.fn['codeium#Accept']()
+    --                                       end, { expr = true, silent = true })
+    --                                             vim.keymap.set('i', '<C-;>', function()
+    --                                                     return vim.fn['codeium#CycleCompletions'](1)
+    --                                                           end, { expr = true, silent = true })
+    --                                                                 vim.keymap.set('i', '<C-,>', function()
+    --                                                                         return vim.fn['codeium#CycleCompletions'](-1)
+    --                                                                               end, { expr = true, silent = true })
+    --                                                                                     vim.keymap.set('i', '<C-x>', function()
+    --                                                                                             return vim.fn['codeium#Clear']()
+    --                                                                                                   end, { expr = true, silent = true })
+    --                                                                                                       end,
+    --                                                                                                         },
+    --                                                                                                           -- End Codeium AI Completion
+    --                                                                                                           able which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
