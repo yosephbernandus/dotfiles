@@ -137,6 +137,8 @@ export SYSTEM_DEPS_PANGO_LIB="pango-1.0"
 # add Pulumi to the PATH
 export PATH=$PATH:/home/jtp00108/.pulumi/bin
 
+# export PATH=$PATH:/home/jtp00108/.local/bin/awrit
+
 # pnpm
 export PNPM_HOME="/home/jtp00108/.local/share/pnpm"
 case ":$PATH:" in
@@ -167,4 +169,6 @@ fi
 
 export TERM=xterm-256color
 bindkey '^ ' autosuggest-accept
+
+alias web='awrit'
 
