@@ -171,4 +171,4 @@ export TERM=xterm-256color
 bindkey '^ ' autosuggest-accept
 
 alias web='awrit'
-
+alias gcm='git commit -m'
