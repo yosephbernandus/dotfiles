@@ -907,6 +907,7 @@ require('lazy').setup({
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
 
         c = { 'clang-format' },
+        go = { 'goimports', 'gofmt' },
       },
     },
   },
@@ -1150,9 +1151,6 @@ require('lazy').setup({
       -- Setup DAP UI
       dapui.setup()
 
-      -- Setup Go DAP
-      require('dap-go').setup()
-
       -- Setup Python DAP with proper path to debugpy
       require('dap-python').setup '/home/jtp00108/.virtualenvs/debugpy/bin/python'
 
@@ -1176,7 +1174,42 @@ require('lazy').setup({
         },
       }
 
-      -- Go configurations will be automatically set up by dap-go
+      -- Setup Go DAP with Delve adapter
+      dap.adapters.delve = {
+        type = 'server',
+        port = '${port}',
+        executable = {
+          command = 'dlv',
+          args = { 'dap', '-l', '127.0.0.1:${port}' },
+        },
+      }
+
+      -- Go configurations
+      dap.configurations.go = {
+        {
+          type = 'delve',
+          name = 'Debug Package',
+          request = 'launch',
+          program = '${fileDirname}',
+        },
+        {
+          type = 'delve',
+          name = 'Debug Test',
+          request = 'launch',
+          mode = 'test',
+          program = '${file}',
+        },
+        {
+          type = 'delve',
+          name = 'Debug Test (go.mod)',
+          request = 'launch',
+          mode = 'test',
+          program = './${relativeFileDirname}',
+        },
+      }
+
+      -- Setup dap-go after adapter configuration
+      require('dap-go').setup()
 
       -- Optional: DAP UI opens when DAP starts and closes when DAP session ends
       dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -1190,14 +1223,22 @@ require('lazy').setup({
       end
 
       -- Keymaps for DAP actions
-      vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint)
-      vim.keymap.set('n', '<Leader>c', dap.continue)
-      vim.keymap.set('n', '<Leader>gb', dap.run_to_cursor)
-      vim.keymap.set('n', '<F2>', dap.step_into)
-      vim.keymap.set('n', '<F3>', dap.step_over)
-      vim.keymap.set('n', '<F4>', dap.step_out)
-      vim.keymap.set('n', '<F5>', dap.step_back)
-      vim.keymap.set('n', '<F6>', dap.restart)
+      local keymap_opts = { noremap = true, silent = true }
+      vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint, keymap_opts)
+      vim.keymap.set('n', '<Leader>c', dap.continue, keymap_opts)
+      vim.keymap.set('n', '<Leader>gb', dap.run_to_cursor, keymap_opts)
+      vim.keymap.set('n', '<F2>', dap.step_into, keymap_opts)
+      vim.keymap.set('n', '<F3>', dap.step_over, keymap_opts)
+      vim.keymap.set('n', '<F4>', dap.step_out, keymap_opts)
+      vim.keymap.set('n', '<F5>', dap.step_back, keymap_opts)
+      vim.keymap.set('n', '<F6>', dap.restart, keymap_opts)
+      -- Go specific debug commands
+      vim.keymap.set('n', '<leader>dt', function()
+        require('dap-go').debug_test()
+      end, keymap_opts)
+      vim.keymap.set('n', '<leader>dl', function()
+        require('dap-go').debug_last()
+      end, keymap_opts)
     end,
   },
 
