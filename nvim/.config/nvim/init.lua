@@ -1683,7 +1683,9 @@ require('lazy').setup({
           lualine_z = {},
           -- These will be filled later
           lualine_c = {},
-          lualine_x = {},
+          lualine_x = {
+            'rest',
+          },
         },
         inactive_sections = {
           -- these are to remove the defaults
@@ -1692,7 +1694,9 @@ require('lazy').setup({
           lualine_y = {},
           lualine_z = {},
           lualine_c = {},
-          lualine_x = {},
+          lualine_x = {
+            'rest',
+          },
         },
       }
 
@@ -1883,6 +1887,8 @@ require('lazy').setup({
       end,
     },
   },
+
+  vim.keymap.set('n', '<S-p>', '<Cmd>:Rest run<CR>', { desc = 'Run Rest Nvim' }),
   -- end rest.nvim
 }, {
   ui = {
