@@ -128,6 +128,7 @@ export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-l
 export SYSTEM_DEPS_PANGO_NO_PKG_CONFIG="true"
 export SYSTEM_DEPS_PANGO_LIB="pango-1.0"
 
+
 # eval "$(tmuxifier init -)"
 
 
@@ -172,3 +173,7 @@ bindkey '^ ' autosuggest-accept
 
 alias web='awrit'
 alias gcm='git commit -m'
+
+# ZIG
+export PATH=$HOME/.local/zig:$PATH
+
