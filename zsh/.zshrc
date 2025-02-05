@@ -177,3 +177,4 @@ alias gcm='git commit -m'
 # ZIG
 export PATH=$HOME/.local/zig:$PATH
 
+alias cari_port="sudo lsof -i -n -P | grep"
