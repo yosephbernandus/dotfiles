@@ -78,14 +78,59 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# plugins=(
+#     git
+#     zsh-autosuggestions
+#     zsh-syntax-highlighting
+#     docker
+# )
+#
+# source $ZSH/oh-my-zsh.sh
+
+# Check OS type
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Common oh-my-zsh configuration
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"  # or your preferred theme
+
+# Basic plugins that work everywhere
 plugins=(
     git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
     docker
 )
 
-source $ZSH/oh-my-zsh.sh
+# OS-specific configurations
+case $OS in
+    "arch"|"manjaro")
+        # Source oh-my-zsh
+        source $ZSH/oh-my-zsh.sh
+        
+        # Arch-specific plugin sourcing
+        source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+        ;;
+        
+    "ubuntu"|"debian")
+        # Ubuntu/Debian plugins
+        plugins+=(
+            zsh-autosuggestions
+            zsh-syntax-highlighting
+        )
+        
+        # Source oh-my-zsh
+        source $ZSH/oh-my-zsh.sh
+        ;;
+        
+    *)
+        # Default case
+        source $ZSH/oh-my-zsh.sh
+        echo "Unknown OS: $OS. Basic configuration loaded."
+        ;;
+esac
 
 # User configuration
 
