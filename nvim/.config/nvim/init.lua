@@ -167,8 +167,35 @@ vim.opt.scrolloff = 10
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- Show diagnostic in floating window
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror' })
+
+-- Go to next diagnostic
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic' })
+
+-- Go to previous diagnostic
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic' })
+
+-- Show all diagnostics in location list
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = '[D]iagnostic [L]ist' })
+
+-- Go to next error (severity = ERROR only)
+vim.keymap.set('n', ']e', function()
+  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Go to next [E]rror' })
+
+-- Go to previous error (severity = ERROR only)
+vim.keymap.set('n', '[e', function()
+  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Go to previous [E]rror' })
+
+-- Toggle virtual text (inline error messages)
+vim.keymap.set('n', '<leader>td', function()
+  local current_setting = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config {
+    virtual_text = not current_setting,
+  }
+end, { desc = '[T]oggle [D]iagnostic virtual text' })
 
 -- Neotree keymaps
 vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle<cr>', { desc = 'Open Sidebar Neotree' })
@@ -1452,21 +1479,21 @@ require('lazy').setup({
   -- copilot lua vim
 
   -- copilot
-  {
-    'zbirenbaum/copilot.lua',
-    lazy = false,
-    event = 'InsertEnter',
-    cmd = 'Copilot',
-    config = function()
-      require('copilot').setup {
-        suggestion = {
-          enabled = true,
-          auto_trigger = true, -- Enable auto-suggestions
-        },
-        panel = { enabled = true }, -- Enable the Copilot panel
-      }
-    end,
-  },
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   lazy = false,
+  --   event = 'InsertEnter',
+  --   cmd = 'Copilot',
+  --   config = function()
+  --     require('copilot').setup {
+  --       suggestion = {
+  --         enabled = true,
+  --         auto_trigger = true, -- Enable auto-suggestions
+  --       },
+  --       panel = { enabled = true }, -- Enable the Copilot panel
+  --     }
+  --   end,
+  -- },
   -- end copilot vim
 
   -- avante AI
@@ -1516,16 +1543,22 @@ require('lazy').setup({
         ft = { 'markdown', 'Avante' },
       },
     },
+
     config = function()
       require('avante').setup {
         ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
         ---@alias Mode "agentic" | "legacy"
-        mode = 'agentic',
+        -- mode = 'agentic',
         provider = 'copilot', -- Recommend using Claude
         auto_suggestions_provider = 'copilot', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
         -- claude = {
         --   model = 'claude-3-5-sonnet',
         -- },
+        providers = {
+          claude = {
+            model = 'claude-3-5-sonnet',
+          },
+        },
         behaviour = {
           auto_suggestions = false, -- Experimental stage
           auto_set_highlight_group = true,
